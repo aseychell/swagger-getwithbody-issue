@@ -1,0 +1,51 @@
+---
+swagger: "2.0"
+info:
+  version: "1.0.0"
+  title: "Echo"
+host: "localhost:8080"
+basePath: "/api"
+schemes:
+- "http"
+paths:
+  /filter:
+    get:
+      description: "Query a number of echos"
+      operationId: "echo_filter"
+      parameters:
+      - in: "body"
+        name: "request"
+        required: true
+        schema:
+          $ref: "#/definitions/EchoFilter"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/Echo"
+      x-swagger-router-controller: "Default"
+definitions:
+  EchoFilter:
+    type: "object"
+    properties:
+      name:
+        type: "string"
+        maxLength: 50
+        x-fieldValidation: "has_text size(_, 50)"
+      surname:
+        type: "string"
+        maxLength: 50
+        x-fieldValidation: "has_text size(_, 50)"
+    title: "EchoFilter"
+  Echo:
+    type: "object"
+    properties:
+      name:
+        type: "string"
+        maxLength: 50
+        x-fieldValidation: "has_text size(_, 50)"
+      surname:
+        type: "string"
+        maxLength: 50
+        x-fieldValidation: "has_text size(_, 50)"
+    title: "EchoFilter"
